@@ -2181,6 +2181,7 @@ set_src(ENGINE_SHARED GLOB_RECURSE src/engine/shared
   config_domains.h
   config_includes.h
   config_variables.h
+  config_variables_shikon.h
   config_variables_tclient.h
   console.cpp
   console.h
@@ -2484,6 +2485,17 @@ if(CLIENT)
     components/emoticon.h
     components/flow.cpp
     components/flow.h
+    components/fluffytw/aimbot/aimbot.cpp
+    components/fluffytw/aimbot/aimbot.h
+    components/fluffytw/aimbot/aimbot_scans.cpp
+    components/fluffytw/f_bots.cpp
+    components/fluffytw/f_bots.h
+    components/fluffytw/f_component.h
+    components/fluffytw/f_helper.cpp
+    components/fluffytw/f_helper.h
+    components/fluffytw/f_visuals-base.cpp
+    components/fluffytw/f_visuals.cpp
+    components/fluffytw/f_visuals.h
     components/freezebars.cpp
     components/freezebars.h
     components/ghost.cpp
@@ -2734,7 +2746,6 @@ if(CLIENT)
     src/generated/client_data7.cpp
     src/generated/client_data7.h
   )
-  add_subdirectory(src/game/client/components/fluffytw)
   set(CLIENT_SRC ${ENGINE_CLIENT} ${PLATFORM_CLIENT} ${GAME_CLIENT} ${GAME_EDITOR} ${GAME_MAP} ${GAME_GENERATED_CLIENT})
 
   set(DEPS_CLIENT ${DEPS} ${GLEW_DEP} ${WAVPACK_DEP})
