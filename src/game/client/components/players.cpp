@@ -972,7 +972,7 @@ void CPlayers::RenderPlayer(
 		}
 	}
 	// shikon
-	fHelper->m_pVisuals->Run(ClientID, Angle, Position);
+	fHelper->m_pVisuals->Run(ClientId, Angle, Position);
 }
 
 void CPlayers::RenderPlayerGhost(
