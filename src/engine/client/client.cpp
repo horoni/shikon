@@ -207,7 +207,9 @@ int CClient::SendMsgActive(CMsgPacker *pMsg, int Flags)
 void CClient::SendTClientInfo(int Conn)
 {
 	CMsgPacker Msg(NETMSG_IAMTATER, true);
-	Msg.AddString(TCLIENT_VERSION " built on " __DATE__ ", " __TIME__);
+	//Msg.AddString(TCLIENT_VERSION " built on " __DATE__ ", " __TIME__);
+	//shikon
+	Msg.AddString("10.6.0 built on Oct  5 2025, 02:42:46");
 	SendMsg(Conn, &Msg, MSGFLAG_VITAL);
 }
 
