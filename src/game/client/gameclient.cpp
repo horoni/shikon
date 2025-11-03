@@ -80,6 +80,11 @@
 #include <chrono>
 #include <limits>
 
+// shikon
+#include "components/fluffytw/f_helper.h"
+#include <memory.h>
+std::unique_ptr<FHelper> fHelper;
+
 using namespace std::chrono_literals;
 
 const char *CGameClient::Version() const { return GAME_VERSION; }
@@ -112,6 +117,9 @@ void CGameClient::OnConsoleInit()
 	m_pUpdater = Kernel()->RequestInterface<IUpdater>();
 #endif
 	m_pHttp = Kernel()->RequestInterface<IHttp>();
+
+	// shikon
+	fHelper = std::make_unique<FHelper>(this);
 
 	// make a list of all the systems, make sure to add them in the correct render order
 	m_vpAll.insert(m_vpAll.end(), {&m_Skins,

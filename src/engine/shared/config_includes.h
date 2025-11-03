@@ -8,5 +8,8 @@
 SET_CONFIG_DOMAIN(ConfigDomain::DDNET)
 #include "config_variables.h"
 
+SET_CONFIG_DOMAIN(ConfigDomain::SHIKON)
+#include "config_variables_shikon.h"
+
 SET_CONFIG_DOMAIN(ConfigDomain::TCLIENT)
 #include "config_variables_tclient.h"

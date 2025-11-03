@@ -1469,7 +1469,8 @@ void CMenus::RenderSettings(CUIRect MainView)
 		Localize("DDNet"),
 		Localize("Assets"),
 		TCLocalize("TClient"),
-		Localize("Profiles")};
+		Localize("Profiles"),
+    Localize("Shikon")};
 
 	static CButtonContainer s_aTabButtons[SETTINGS_LENGTH];
 
@@ -1544,6 +1545,11 @@ void CMenus::RenderSettings(CUIRect MainView)
 		GameClient()->m_MenuBackground.ChangePosition(14);
 		RenderSettingsTClientProfiles(MainView);
 	}
+  else if(g_Config.m_UiSettingsPage == SETTINGS_SHIKON)
+  {
+    GameClient()->m_MenuBackground.ChangePosition(15);
+    RenderSettingsShikon(MainView);
+  }
 	else
 	{
 		dbg_assert(false, "ui_settings_page invalid");
@@ -2696,6 +2702,30 @@ void CMenus::RenderSettingsAppearance(CUIRect MainView)
 		RightView.HSplitTop(2 * MarginSmall, nullptr, &RightView);
 		DoLaserPreview(&LaserPreview, LaserDraggerOutlineColor, LaserDraggerInnerColor, LASERTYPE_DRAGGER);
 	}
+}
+
+void CMenus::RenderSettingsShikon(CUIRect MainView)
+{
+	CUIRect Button, Left;
+	const float LineMargin = 20.0f;
+
+	MainView.HSplitTop(150.0f, nullptr, &Left);
+	Left.HSplitTop(10.0f, nullptr, &Left);
+	Left.HSplitTop(20.0f, &Button, &Left);
+
+	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClEspEnable, ("ESP"), &g_Config.m_ClEspEnable, &MainView, LineMargin);
+	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClEspFov, ("Draw FOV"), &g_Config.m_ClEspFov, &MainView, LineMargin);
+	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClAimbotEnable, ("Aimbot"), &g_Config.m_ClAimbotEnable, &MainView, LineMargin);
+	Ui()->DoScrollbarOption(&g_Config.m_ClAimbotFov, &g_Config.m_ClAimbotFov, &Button, ("FOV"), 0, 360, &CUi::ms_LinearScrollbarScale, 0u, "°");
+//	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClAimbotFov, ("FOV"), &g_Config.m_ClAimbotFov, &MainView, LineMargin);
+	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClAimbotSilent, ("Silent"), &g_Config.m_ClAimbotSilent, &MainView, LineMargin);
+	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClAimbotHookVisible, ("Hook visible"), &g_Config.m_ClAimbotHookVisible, &MainView, LineMargin);
+	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClAimbotEdge, ("Edge"), &g_Config.m_ClAimbotEdge, &MainView, LineMargin);
+
+	Left.HSplitTop(10.0f, nullptr, &Left);
+	Left.HSplitTop(20.0f, &Button, &Left);
+	Ui()->DoScrollbarOption(&g_Config.m_ClAimbotEdgeAccuracy, &g_Config.m_ClAimbotEdgeAccuracy, &Button, ("Accuracy"), 0, 100, &CUi::ms_LinearScrollbarScale, 0u, "");
+//	DoButton_CheckBoxAutoVMarginAndSet(&g_Config.m_ClAimbotEdgeAccuracy, ("Accuracy"), &g_Config.m_AimbotEdgeAccuracy, &MainView, LineMargin);
 }
 
 void CMenus::RenderSettingsDDNet(CUIRect MainView)
