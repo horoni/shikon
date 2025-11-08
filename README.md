@@ -2,6 +2,9 @@
 
 [![Build](https://github.com/sjrc6/TaterClient-ddnet/workflows/Build/badge.svg)](https://github.com/sjrc6/TaterClient-ddnet/actions/workflows/build.yaml)
 
+### Shikon Client
+[README](src/game/client/components/fluffytw/README.md)
+
 ### Taters custom ddnet client with some modifications
 
 Not guarenteed to be bug free, but I will try to fix them.
