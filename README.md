@@ -3,7 +3,7 @@
 [![Build](https://github.com/sjrc6/TaterClient-ddnet/workflows/Build/badge.svg)](https://github.com/sjrc6/TaterClient-ddnet/actions/workflows/build.yaml)
 
 ### Shikon Client
-[README](src/game/client/components/fluffytw/README.md)
+[README](src/game/client/components/shikon/README.md)
 
 ### Taters custom ddnet client with some modifications
 

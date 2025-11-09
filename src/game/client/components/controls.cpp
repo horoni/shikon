@@ -16,7 +16,7 @@
 #include <game/collision.h>
 
 //shikon
-#include "fluffytw/f_helper.h"
+#include "shikon/helper.h"
 
 CControls::CControls()
 {
@@ -265,7 +265,7 @@ int CControls::SnapInput(int *pData)
 			m_aInputData[g_Config.m_ClDummy].m_Direction = 1;
 
 		// shikon
-		fHelper->m_pBots->Run();
+		shHelper->m_pBots->Run();
 
 		// dummy copy moves
 		if(g_Config.m_ClDummyCopyMoves)
