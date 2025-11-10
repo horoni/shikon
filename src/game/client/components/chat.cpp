@@ -4,7 +4,7 @@
 #include "chat.h"
 
 #include <engine/editor.h>
-#include <engine/external/remimu.h>
+#include <engine/external/regex.h>
 #include <engine/graphics.h>
 #include <engine/keys.h>
 #include <engine/shared/config.h>
@@ -559,15 +559,9 @@ void CChat::OnMessage(int MsgType, void *pRawMsg)
 	{
 		CNetMsg_Sv_Chat *pMsg = (CNetMsg_Sv_Chat *)pRawMsg;
 
-		if(g_Config.m_TcRegexChatIgnore[0])
-		{
-			RegexToken aTokens[512];
-			int16_t TokenCount = 512;
-			if(regex_parse(g_Config.m_TcRegexChatIgnore, aTokens, &TokenCount, 0))
-				GameClient()->Echo("Regex error");
-			else if(regex_match(aTokens, pMsg->m_pMessage, 0, 0, 0, 0) != -1)
-				return;
-		}
+		auto &Re = GameClient()->m_TClient.m_RegexChatIgnore;
+		if(Re.error().empty() && Re.test(pMsg->m_pMessage))
+			return;
 
 		/*
 		if(g_Config.m_ClCensorChat)
@@ -1342,9 +1336,9 @@ void CChat::OnPrepareLines(float y)
 		{
 			TextRender()->CreateOrAppendTextContainer(Line.m_TextContainerIndex, &AppendCursor, pText);
 			ColorRGBA ColorSub = Color;
-			ColorSub.r *= 0.8f;
-			ColorSub.g *= 0.4f;
-			ColorSub.b *= 0.4f;
+			ColorSub.r = 0.7f;
+			ColorSub.g = 0.6f;
+			ColorSub.b = 0.6f;
 			TextRender()->TextColor(ColorSub);
 			TextRender()->CreateOrAppendTextContainer(Line.m_TextContainerIndex, &AppendCursor, "\n");
 			AppendCursor.m_FontSize *= 0.8f;

@@ -245,11 +245,10 @@ int str_comp_filenames(const char *a, const char *b)
 	return *a - *b;
 }
 
-/* removes leading and trailing spaces and limits the use of multiple spaces */
-void str_clean_whitespaces(char *str_in)
+void str_clean_whitespaces(char *str)
 {
-	char *read = str_in;
-	char *write = str_in;
+	char *read = str;
+	char *write = str;
 
 	/* skip initial whitespace */
 	while(*read == ' ')
@@ -789,8 +788,7 @@ void str_escape(char **dst, const char *src, const char *end)
 {
 	while(*src && *dst + 1 < end)
 	{
-		// TClient wants { and } to be escaped
-		if(*src == '"' || *src == '\\' || *src == '{' || *src == '}') // escape \ and "
+		if(*src == '"' || *src == '\\') // escape \ and "
 		{
 			if(*dst + 2 < end)
 				*(*dst)++ = '\\';
