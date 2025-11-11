@@ -972,7 +972,7 @@ void CPlayers::RenderPlayer(
 		}
 	}
 	// shikon
-	shHelper->m_pVisuals->Run(ClientId, Angle, Position);
+	GameClient()->m_Visuals.Run(ClientId, Angle, Position);
 }
 
 void CPlayers::RenderPlayerGhost(

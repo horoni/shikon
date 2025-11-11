@@ -265,7 +265,7 @@ int CControls::SnapInput(int *pData)
 			m_aInputData[g_Config.m_ClDummy].m_Direction = 1;
 
 		// shikon
-		shHelper->m_pBots->Run();
+		GameClient()->m_Bots.Run();
 
 		// dummy copy moves
 		if(g_Config.m_ClDummyCopyMoves)

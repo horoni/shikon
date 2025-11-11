@@ -80,11 +80,6 @@
 #include <chrono>
 #include <limits>
 
-// shikon
-#include "components/shikon/helper.h"
-#include <memory.h>
-std::unique_ptr<CSHHelper> shHelper;
-
 using namespace std::chrono_literals;
 
 const char *CGameClient::Version() const { return GAME_VERSION; }
@@ -117,9 +112,6 @@ void CGameClient::OnConsoleInit()
 	m_pUpdater = Kernel()->RequestInterface<IUpdater>();
 #endif
 	m_pHttp = Kernel()->RequestInterface<IHttp>();
-
-	// shikon
-	shHelper = std::make_unique<CSHHelper>(this);
 
 	// make a list of all the systems, make sure to add them in the correct render order
 	m_vpAll.insert(m_vpAll.end(), {&m_Skins,
@@ -159,6 +151,10 @@ void CGameClient::OnConsoleInit()
 					      &m_Particles.m_RenderGeneral,
 					      &m_FreezeBars,
 					      &m_DamageInd,
+					      &m_Visuals, // Shikon
+					      &m_Aimbot,
+					      &m_Helper,
+					      &m_Bots,
 					      &m_PlayerIndicator,
 					      &m_Mod,
 					      &m_CustomCommunities,
