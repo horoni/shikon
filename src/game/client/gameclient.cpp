@@ -153,6 +153,7 @@ void CGameClient::OnConsoleInit()
 					      &m_DamageInd,
 					      &m_Visuals, // Shikon
 					      &m_Aimbot,
+					      &m_BalanceBot,
 					      &m_Helper,
 					      &m_Bots,
 					      &m_PlayerIndicator,
